@@ -28,11 +28,12 @@
 </head>
 
 <body>
+    <!-- header -->
     <header class="bg-pink-50">
-        <div class="navbar   max-w-7xl mx-auto">
-            <div class="navbar-start">
+        <div class="navbar max-w-7xl mx-auto">
+            <div class="navbar-start ">
                 <div class="dropdown">
-                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                    <div tabindex="0" role="button" class="btn btn-ghost md:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -51,13 +52,13 @@
                                 <i class="fa-solid fa-right-from-bracket"></i>Log out</a></li>
                     </ul>
                 </div>
-                <a href="#" class="flex items-center gap-1 text-xl">
+                <a href="#" class="flex items-center gap-1 text-xl ">
                     <span class="font-bold">English</span>
                     <img class="h-10 w-10" src="assets/logo2.png" alt="">
                     <span class="hind-siliguri-bangla ">জানালা</span>
                 </a>
             </div>
-            <div class="navbar-end  hidden lg:flex">
+            <div class="navbar-end hidden md:flex">
                 <ul class="menu menu-horizontal px-1 space-x-5">
                     <li><a class="btn btn-outline btn-secondary">
                             <i class="fa-solid fa-circle-question"></i>
@@ -69,9 +70,28 @@
                             <i class="fa-solid fa-right-from-bracket"></i>Log out</a></li>
                 </ul>
             </div>
-
         </div>
     </header>
+
+
+    <!-- Banner -->
+    <section class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row justify-between gap-20 items-center">
+        <div class="flex-1 space-y-6 text-center lg:text-left">
+            <h1 class="text-4xl font-bold text-black/80"><span class="text-pink-600">English</span> is Easy</h1>
+            <p class="hind-siliguri-bangla text-2xl font-medium">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের
+                Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+
+            <div class="flex flex-col gap-5 justify-between items-center md:items-start">
+                <input type="text" placeholder="Type Your name" class="border rounded-md border-black/50 focus:outline-0 p-2 w-[50%]">
+                <input type="password" name="" id="" placeholder="*********" class="border rounded-md border-black/50 focus:outline-0 p-2 w-[50%]">
+            </div>
+        </div>
+        <div class="flex-1">
+            <img src="assets/hero-banner.png" alt="" class="md:w-full md:h-full w-[220px]">
+        </div>
+    </section>
+
+
 </body>
 
 </html>
