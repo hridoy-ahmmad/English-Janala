@@ -31,10 +31,19 @@ const btnCard = (id) => {
 const displayLevelWord = (words) => {
     const wordContainer = document.getElementById('wordContainer')
     wordContainer.innerHTML = ''
+    if (words.length === 0) {
+        wordContainer.innerHTML = `<div class="col-span-full text-center py-10">
+            <p class="text-xl font-semibold text-gray-500">
+                No Words Found
+            </p>
+        </div>`
+        return
+    }
     words.forEach(word => {
         const wordDiv = document.createElement('div')
+
         wordDiv.innerHTML = `
-         <div class=" bg-gray-100 p-1 h-full">
+         <div class="  p-1 h-full">
             <div class="flex flex-col gap-5 justify-between h-full w-full max-w-lg  bg-white  rounded-sm shadow-sm p-4 ">
                 <div class="text-center space-y-5 ">
                     <h1 class="text-xl font-bold text-black ">${word.word} </h1>
@@ -48,12 +57,12 @@ const displayLevelWord = (words) => {
 
                 <div class="flex justify-between">
                     <button
-                        class="  bg-blue-100 transition-colors p-2">
+                        class="  bg-pink-50 hover:bg-pink-200 transition duration-300 rounded-sm p-2">
                         <i class="fa-solid fa-circle-info"></i>
                     </button>
 
                     <button
-                        class="  bg-blue-100 transition-colors p-2">
+                        class="  bg-pink-50 hover:bg-pink-200 transition duration-300 rounded-sm p-2">
                         <i class="fa-solid fa-volume-high"></i>
                     </button>
                 </div>
