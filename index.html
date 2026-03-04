@@ -108,6 +108,25 @@
         </div>
     </section>
 
+    <!-- Search -->
+
+    <div class="join flex justify-center my-5">
+        <div>
+            <label
+                class="input validator join-item border border-gray-300 border-r-pink-600 focus-within:outline-none focus-within:border-pink-600">
+                <input type="text" placeholder="Search" id="inputSearch" required />
+            </label>
+        </div>
+        <button id="searchBtn" class="btn btn-secondary btn-outline join-item ">Search</button>
+    </div>
+
+    <div class="flex max-w-7xl mx-auto justify-evenly">
+        <div class="flex justify-center items-center">
+            <p class="font-bold text-pink-600">Total words: </p>
+            <p id="count" class="py-2 px-4 ">0</p>
+        </div>
+    </div>
+
     <!-- Loading -->
     <div id="spinner" class="flex items-center justify-center py-10 hidden">
         <img src="assets/bouncing-circles.svg" class="h-20 w-20" alt="">
@@ -200,7 +219,7 @@
 
     <!-- Footer -->
 
-    <footer class="footer footer-horizontal footer-center bg-primary text-primary-content p-10">
+    <footer class="footer footer-horizontal footer-center bg-primary text-primary-content p-10 my-10">
         <aside>
 
             <a href="#" class="flex items-center gap-1 text-xl ">

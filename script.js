@@ -50,7 +50,6 @@ const loadLevelWord = (id) => {
     const wordContainer = document.getElementById('wordContainer')
     wordContainer.innerHTML = ''
     const url = `https://openapi.programming-hero.com/api/level/${id}`
-
     fetch(url)
         .then(res => res.json())
         .then(json => {
@@ -136,6 +135,8 @@ const displayWordDetails = (details) => {
 const displayLevelWord = (words) => {
     const wordContainer = document.getElementById('wordContainer')
     wordContainer.innerHTML = ''
+    const count = document.getElementById('count')
+    count.innerText = words.length
     if (words.length === 0) {
         wordContainer.innerHTML = `
         <div class="text-center col-span-full space-y-5 hind-siliguri-bangla lg:py-16">
@@ -182,3 +183,19 @@ const displayLevelWord = (words) => {
     spinnerLoading(false)
 }
 
+
+document.getElementById('searchBtn')
+    .addEventListener('click', () => {
+        const input = document.getElementById('inputSearch')
+        const inputValues = input.value.toLowerCase()
+        fetch('https://openapi.programming-hero.com/api/words/all')
+            .then(res => res.json())
+            .then(data => {
+                const allWords = data.data
+                const filterWord = allWords.filter(word => word.word.toLowerCase().includes(inputValues))
+                displayLevelWord(filterWord)
+
+
+            })
+
+    })
