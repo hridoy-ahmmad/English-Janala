@@ -94,6 +94,9 @@
         </div>
     </section>
 
+
+
+
     <!-- Lessions Sections -->
     <section class="space-y-8">
         <div class="text-center">
@@ -104,13 +107,37 @@
 
         </div>
     </section>
+
+    <!-- Loading -->
+    <div id="spinner" class="flex items-center justify-center py-10 hidden">
+           <img src="assets/bouncing-circles.svg" class="h-20 w-20" alt="">
+    </div>
     <!-- Word Card -->
-    <section id="wordContainer" class="bg-pink-50 p-5 max-w-11/12 mx-auto md:grid md:grid-cols-3 lg:grid-cols-4 mb-5">
+    <section id="wordContainer" class="bg-pink-50 p-5 max-w-7xl mx-auto md:grid md:grid-cols-3 lg:grid-cols-4 mb-5">
         <div class="text-center col-span-full space-y-7 hind-siliguri-bangla lg:py-16">
-            <p class="text-2xl font-bold text-black/50 ">আপনি এখনও কোনো Lesson select করেননি</p>
+            <p class="text-2xl font-bold text-black/50">আপনি এখনও কোনো Lesson select করেননি</p>
             <p class="text-4xl font-bold text-black/80">একটি Lesson Select করুন।</p>
         </div>
     </section>
+
+
+    <!-- modal -->
+
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <div id="details">
+            </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
     <script src="script.js"></script>
 </body>
 

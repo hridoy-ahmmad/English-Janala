@@ -10,6 +10,18 @@ const loadLessons = () => {
 }
 loadLessons()
 
+const spinnerLoading = (status) => {
+    const spinnerDiv = document.getElementById('spinner')
+    const wordContainer = document.getElementById('wordContainer')
+    if (status == true) {
+        spinnerDiv.classList.remove('hidden')
+        wordContainer.classList.add('hidden')
+    } else {
+        wordContainer.classList.remove('hidden')
+        spinnerDiv.classList.add('hidden')
+    }
+}
+
 const setLessonData = (lessions) => {
     const lessionDiv = document.getElementById('lessions')
     lessionDiv.innerHTML = ''
@@ -26,14 +38,15 @@ const setLessonData = (lessions) => {
 const removeActive = () => {
     const getButton = document.querySelectorAll(".btn-active-remove")
 
-    getButton.forEach(btn=>{
+    getButton.forEach(btn => {
         btn.classList.remove('active')
     })
-   
-    
+
+
 }
 
 const btnCard = (id) => {
+    spinnerLoading(true)
     const url = `https://openapi.programming-hero.com/api/level/${id}`
     fetch(url)
         .then(res => res.json())
@@ -46,7 +59,79 @@ const btnCard = (id) => {
         })
 }
 
+const loadWordDetails = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/word/${id}`
+    const res = await fetch(url)
+    const details = await res.json()
+    displayWordDetails(details.data)
+}
+
+const synonymsFunction = (words) => {
+    const synonyms = words.map(word => `<span class="px-3 py-1 text-sm bg-gray-100 border border-gray-200 rounded-md"> ${word} </span>`)
+    console.log(synonyms);
+    return synonyms.join(' ')
+
+}
+
+const displayWordDetails = (details) => {
+    const detailDiv = document.getElementById('details')
+    const modalSection = document.getElementById('my_modal_5')
+    const { word, meaning, pronunciation, sentence, partsOfSpeech, synonyms } = details
+    detailDiv.innerHTML = `
+     <div class="bg-white w-[420px] rounded-xl border border-gray-200 p-6">
+
+    <!-- Title -->
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">
+      ${word} /<i class="fa-solid fa-microphone-lines"></i> : ( ${pronunciation} )
+    </h2>
+
+    <!-- Meaning -->
+    <div class="mb-4">
+      <h3 class="font-semibold text-gray-700 mb-1">Meaning</h3>
+      <p class="text-gray-600">${meaning}</p>
+    </div>
+
+    <!-- Example -->
+    <div class="mb-4">
+      <h3 class="font-semibold text-gray-700 mb-1">Example</h3>
+      <p class="text-gray-600">
+        ${sentence}
+      </p>
+    </div>
+
+    <!-- Synonyms -->
+    <div class="mb-6">
+      <h3 class="font-semibold text-gray-700 mb-2">সমার্থক শব্দ গুলো</h3>
+      <div class="flex gap-2 flex-wrap">
+          ${synonymsFunction(synonyms)}
+      </div>
+    </div>
+    <div class = "my-5"> 
+    <h3 class="font-semibold text-gray-700 mb-2">Parts of Speech</h3>
+    <p class="px-3 py-1 text-sm bg-gray-100 border border-gray-200 rounded-md">
+ ${partsOfSpeech}
+        </p> 
+        </div>
+
+    <!-- Button -->
+    <button class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg transition">
+      Complete Learning
+    </button>
+
+  </div>
+    `
+    modalSection.showModal()
+
+
+
+}
+
+
+
+
+
 const displayLevelWord = (words) => {
+
     const wordContainer = document.getElementById('wordContainer')
     wordContainer.innerHTML = ''
     if (words.length === 0) {
@@ -57,6 +142,7 @@ const displayLevelWord = (words) => {
             <p class="text-2xl font-bold text-black/50 ">এই lesson এ এখনও কোনো Vocabulary যুক্ত করা হয়নি</p>
             <p class="text-4xl font-bold text-black/80"> অন্য একটি Lesson Select করুন।</p>
         </div>`
+        spinnerLoading(false)
         return
     }
     words.forEach(word => {
@@ -77,12 +163,13 @@ const displayLevelWord = (words) => {
 
                 <div class="flex justify-between">
                     <button
-                        class="  bg-pink-50 hover:bg-pink-200 transition duration-300 rounded-sm p-2">
+                     onclick= loadWordDetails(${word.id})
+                        class="  cursor-pointer bg-pink-50 hover:bg-pink-200 transition duration-300 rounded-sm p-2">
                         <i class="fa-solid fa-circle-info"></i>
                     </button>
 
                     <button
-                        class="  bg-pink-50 hover:bg-pink-200 transition duration-300 rounded-sm p-2">
+                        class=" cursor-pointer bg-pink-50 hover:bg-pink-200 transition duration-300 rounded-sm p-2">
                         <i class="fa-solid fa-volume-high"></i>
                     </button>
                 </div>
@@ -90,8 +177,10 @@ const displayLevelWord = (words) => {
             </div>
         </div>
         `
+
         wordContainer.append(wordDiv)
+
     })
-
-
+    spinnerLoading(false)
 }
+
